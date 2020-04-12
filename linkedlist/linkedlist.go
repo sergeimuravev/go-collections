@@ -22,7 +22,7 @@ func New(values ...interface{}) LinkedList {
 	list := LinkedList{}
 	if values != nil {
 		for _, value := range values {
-			list.Add(value)
+			list.Add(nil, value)
 		}
 	}
 
@@ -44,49 +44,20 @@ func (list *LinkedList) First() *Node {
 	return list.first
 }
 
-// Add inserts a new node at the beginning of the list.
-func (list *LinkedList) Add(value interface{}) *Node {
-	newNode := NewNode(value, list.first)
-	list.first = &newNode
-	list.counter++
-	return list.first
-}
-
-// AddAfter inserts a new node after the provided one.
-// If one is not provided, it inserts a new node at the beginning of the list.
-func (list *LinkedList) AddAfter(node *Node, value interface{}) *Node {
+// Add inserts a new node after the provided one.
+// If node is not provided, inserts a new node at the beginning of the list.
+func (list *LinkedList) Add(node *Node, value interface{}) *Node {
+	var newNode *Node
 	if node == nil {
-		return list.Add(value)
+		newNode = &Node{value: value, next: list.first}
+		list.first = newNode
+	} else {
+		newNode = &Node{value: value, next: node.next}
+		node.next = newNode
 	}
 
-	newNode := NewNode(value, node.next)
-	node.next = &newNode
 	list.counter++
-	return node.next
-}
-
-// AddBefore inserts a new node before the provided one.
-// If one is not provided, it inserts a new node at the end of the list.
-func (list *LinkedList) AddBefore(node *Node, value interface{}) *Node {
-	if list.first == nil {
-		return list.Add(value) // Empty list
-	}
-
-	temp := NewNode(nil, list.first)
-	current := &temp
-	for current.next != nil {
-		if current.next == node {
-			break
-		}
-
-		current = current.next
-	}
-
-	newNode := NewNode(value, node)
-	current.next = &newNode
-	list.first = temp.next
-	list.counter++
-	return current.next
+	return newNode
 }
 
 // Remove deletes node from list.
@@ -107,26 +78,14 @@ func (list *LinkedList) Remove(node *Node) bool {
 	return false
 }
 
-/*func (list *LinkedList) RemoveAll(value interface{}) int {
-
-}*/
-/*
-// Find returns first node with provided value.
-func (list *LinkedList) FindAll(value interface{}) *Node {
-	current := list.first
-	for current != nil {
-		if current.value == value {
-			return current
-		}
-
-		current = current.next
+// Find returns first node with provided value staring from the given node. Returns nil if value not found.
+// If node is not provided will start search from the beginning of the list.
+func (list *LinkedList) Find(node *Node, value interface{}) *Node {
+	current := node
+	if node == nil {
+		current = list.first
 	}
 
-	return nil
-}*/
-
-func (list *LinkedList) Find(value interface{}) *Node {
-	current := list.first
 	for current != nil {
 		if current.value == value {
 			return current
