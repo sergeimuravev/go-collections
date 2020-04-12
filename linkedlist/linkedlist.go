@@ -1,4 +1,4 @@
-// Package linkedlist provides single linked list implementation.
+// Package linkedlist provides singly linked list implementation.
 package linkedlist
 
 import (
@@ -11,7 +11,7 @@ var _ shared.Counter = (*LinkedList)(nil)
 var _ shared.Enumerable = (*LinkedList)(nil)
 var _ fmt.Stringer = (*LinkedList)(nil)
 
-// LinkedList implements single linked list data structure.
+// LinkedList implements singly linked list data structure.
 type LinkedList struct {
 	counter int
 	first   *Node
@@ -52,6 +52,43 @@ func (list *LinkedList) Add(value interface{}) *Node {
 	return list.first
 }
 
+// AddAfter inserts a new node after the provided one.
+// If one is not provided, it inserts a new node at the beginning of the list.
+func (list *LinkedList) AddAfter(node *Node, value interface{}) *Node {
+	if node == nil {
+		return list.Add(value)
+	}
+
+	newNode := NewNode(value, node.next)
+	node.next = &newNode
+	list.counter++
+	return node.next
+}
+
+// AddBefore inserts a new node before the provided one.
+// If one is not provided, it inserts a new node at the end of the list.
+func (list *LinkedList) AddBefore(node *Node, value interface{}) *Node {
+	if list.first == nil {
+		return list.Add(value) // Empty list
+	}
+
+	temp := NewNode(nil, list.first)
+	current := &temp
+	for current.next != nil {
+		if current.next == node {
+			break
+		}
+
+		current = current.next
+	}
+
+	newNode := NewNode(value, node)
+	current.next = &newNode
+	list.first = temp.next
+	list.counter++
+	return current.next
+}
+
 // Remove deletes node from list.
 func (list *LinkedList) Remove(node *Node) bool {
 	temp := NewNode(nil, list.first)
@@ -70,7 +107,24 @@ func (list *LinkedList) Remove(node *Node) bool {
 	return false
 }
 
+/*func (list *LinkedList) RemoveAll(value interface{}) int {
+
+}*/
+/*
 // Find returns first node with provided value.
+func (list *LinkedList) FindAll(value interface{}) *Node {
+	current := list.first
+	for current != nil {
+		if current.value == value {
+			return current
+		}
+
+		current = current.next
+	}
+
+	return nil
+}*/
+
 func (list *LinkedList) Find(value interface{}) *Node {
 	current := list.first
 	for current != nil {
