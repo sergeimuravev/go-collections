@@ -1,3 +1,4 @@
+// Package linkedlist provides single linked list implementation.
 package linkedlist
 
 import (
@@ -43,7 +44,7 @@ func (list *LinkedList) First() *Node {
 	return list.first
 }
 
-// Add inserts a new node at the start of the list.
+// Add inserts a new node at the beginning of the list.
 func (list *LinkedList) Add(value interface{}) *Node {
 	newNode := NewNode(value, list.first)
 	list.first = &newNode
