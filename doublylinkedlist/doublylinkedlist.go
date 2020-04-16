@@ -1,3 +1,4 @@
+// Package doublylinkedlist provides doubly linked list implementation.
 package doublylinkedlist
 
 import (

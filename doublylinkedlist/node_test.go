@@ -2,7 +2,6 @@ package doublylinkedlist_test
 
 import (
 	. "../doublylinkedlist"
-	"fmt"
 	"testing"
 )
 
@@ -70,15 +69,5 @@ func TestSetters(t *testing.T) {
 
 	if second.Value() != 2 {
 		t.Errorf("Incorrect second node value, got: %d, expected: %d.", second.Value(), 1)
-	}
-}
-
-func TestNodeStringer(t *testing.T) {
-	node := NewNode(0, nil, nil)
-	var stringer fmt.Stringer = &node
-	value := stringer.String()
-	expected := fmt.Sprintf("Doubly linked list node, value=%v.", node.Value())
-	if value != expected {
-		t.Errorf("Incorrect value, got: %s, expected: %s.", value, expected)
 	}
 }
