@@ -2,7 +2,6 @@ package linkedlist_test
 
 import (
 	. "../linkedlist"
-	"fmt"
 	"testing"
 )
 
@@ -190,15 +189,5 @@ func TestClear(t *testing.T) {
 
 	if list.First() != nil {
 		t.Error("First node should be nil.")
-	}
-}
-
-func TestListStringer(t *testing.T) {
-	list := New(1, 2, 3, 4, 5)
-	var stringer fmt.Stringer = &list
-	value := stringer.String()
-	expected := fmt.Sprintf("Linked list. Count=%d.", list.Count())
-	if value != expected {
-		t.Errorf("Incorrect value, got: %s, expected: %s.", value, expected)
 	}
 }

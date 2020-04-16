@@ -3,13 +3,11 @@ package linkedlist
 
 import (
 	"../shared"
-	"fmt"
 )
 
 // Implemented interfaces
 var _ shared.Counter = (*LinkedList)(nil)
 var _ shared.Enumerable = (*LinkedList)(nil)
-var _ fmt.Stringer = (*LinkedList)(nil)
 
 // LinkedList implements singly linked list data structure.
 type LinkedList struct {
@@ -101,9 +99,4 @@ func (list *LinkedList) Find(node *Node, value interface{}) *Node {
 func (list *LinkedList) Clear() {
 	list.first = nil
 	list.counter = 0
-}
-
-// String is a Stringer interface implementation.
-func (list *LinkedList) String() string {
-	return fmt.Sprintf("Linked list. Count=%d.", list.counter)
 }

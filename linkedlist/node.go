@@ -1,12 +1,5 @@
 package linkedlist
 
-import (
-	"fmt"
-)
-
-// Implemented interfaces
-var _ fmt.Stringer = (*Node)(nil)
-
 // Node type specifies element type in the linked list.
 type Node struct {
 	value interface{}
@@ -36,9 +29,4 @@ func (node *Node) Next() *Node {
 // SetNext assigns node next to current one.
 func (node *Node) SetNext(newNode *Node) {
 	node.next = newNode
-}
-
-// String is a Stringer interface implementation.
-func (node *Node) String() string {
-	return fmt.Sprintf("Linked list node, value=%v.", node.value)
 }

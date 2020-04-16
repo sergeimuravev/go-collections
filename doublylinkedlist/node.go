@@ -1,12 +1,5 @@
 package doublylinkedlist
 
-import (
-	"fmt"
-)
-
-// Implemented interfaces
-var _ fmt.Stringer = (*Node)(nil)
-
 // Node type specifies element type in the doubly linked list.
 type Node struct {
 	value    interface{}
@@ -47,9 +40,4 @@ func (node *Node) Previous() *Node {
 // SetPrevious assigns node previous to current one.
 func (node *Node) SetPrevious(newNode *Node) {
 	node.previous = newNode
-}
-
-// String is a Stringer interface implementation.
-func (node *Node) String() string {
-	return fmt.Sprintf("Doubly linked list node, value=%v.", node.value)
 }

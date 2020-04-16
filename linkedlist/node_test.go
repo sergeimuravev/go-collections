@@ -2,7 +2,6 @@ package linkedlist_test
 
 import (
 	. "../linkedlist"
-	"fmt"
 	"testing"
 )
 
@@ -40,15 +39,5 @@ func TestSetters(t *testing.T) {
 
 	if node.Next() != &next {
 		t.Error("Incorrect next node reference.")
-	}
-}
-
-func TestNodeStringer(t *testing.T) {
-	node := NewNode(0, nil)
-	var stringer fmt.Stringer = &node
-	value := stringer.String()
-	expected := fmt.Sprintf("Linked list node, value=%v.", node.Value())
-	if value != expected {
-		t.Errorf("Incorrect value, got: %s, expected: %s.", value, expected)
 	}
 }
