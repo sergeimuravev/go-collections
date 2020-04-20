@@ -9,7 +9,17 @@ type Node struct {
 
 // NewNode creates linked list node.
 func NewNode(value interface{}, next *Node, previous *Node) Node {
-	return Node{value, next, previous}
+	node := &Node{value, next, previous}
+
+	if next != nil {
+		next.previous = node
+	}
+
+	if previous != nil {
+		previous.next = node
+	}
+
+	return *node
 }
 
 // Value returns linked list node value.

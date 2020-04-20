@@ -10,7 +10,7 @@ func TestNewNode(t *testing.T) {
 	second := NewNode(2, nil, &first)
 	first = NewNode(1, &second, nil)
 
-	if first.Next() != &second {
+	if *first.Next() != second {
 		t.Error("First node should point to the second one.")
 	}
 
@@ -26,7 +26,7 @@ func TestNewNode(t *testing.T) {
 		t.Error("second node should point to nil.")
 	}
 
-	if second.Previous() != &first {
+	if *second.Previous() != first {
 		t.Error("second node should point to the first one.")
 	}
 

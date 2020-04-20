@@ -9,7 +9,7 @@ func TestNewNode(t *testing.T) {
 	last := NewNode(1, nil)
 	first := NewNode(0, &last)
 
-	if first.Next() != &last {
+	if *first.Next() != last {
 		t.Error("First node should point to the last one.")
 	}
 

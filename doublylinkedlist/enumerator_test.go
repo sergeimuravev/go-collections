@@ -19,9 +19,9 @@ func TestMoveNext(t *testing.T) {
 	for _, sample := range samples {
 		it := sample.list.GetEnumerator()
 
-		var nodes []Node
+		var nodes []*Node
 		for it.MoveNext() {
-			nodes = append(nodes, it.Current().(Node))
+			nodes = append(nodes, it.Current().(*Node))
 		}
 
 		for i, node := range nodes {
@@ -47,11 +47,12 @@ func TestReset(t *testing.T) {
 		it := sample.list.GetEnumerator()
 		it.MoveNext()
 		it.Reset()
-		it.MoveNext()
 
-		node := it.Current().(Node)
-		if node.Value() != sample.value {
-			t.Errorf("Incorrect value, got: %d, expected: %d.", node.Value(), sample.value)
+		if it.MoveNext() {
+			node := it.Current().(*Node)
+			if node.Value() != sample.value {
+				t.Errorf("Incorrect value, got: %d, expected: %d.", node.Value(), sample.value)
+			}
 		}
 	}
 }

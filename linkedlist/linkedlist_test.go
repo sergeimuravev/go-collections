@@ -27,7 +27,7 @@ func TestNew(t *testing.T) {
 				break
 			}
 
-			node := it.Current().(Node)
+			node := it.Current().(*Node)
 			current := node.Value()
 			expected := sample.values[i]
 			if current != expected {
@@ -98,7 +98,7 @@ func TestAdd(t *testing.T) {
 				break
 			}
 
-			node := it.Current().(Node)
+			node := it.Current().(*Node)
 			current := node.Value()
 			expected := sample.values[i]
 			if current != expected {
@@ -141,7 +141,7 @@ func TestRemove(t *testing.T) {
 		it := sample.list.GetEnumerator()
 		for _, expected := range sample.values {
 			it.MoveNext()
-			node := it.Current().(Node)
+			node := it.Current().(*Node)
 			if node.Value() != expected {
 				t.Errorf("Incorrect value, got: %d, expected: %d.", node.Value(), expected)
 			}

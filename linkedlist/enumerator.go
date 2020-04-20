@@ -14,10 +14,10 @@ type enumerator struct {
 
 func (it *enumerator) Current() interface{} {
 	if it.current == nil {
-		return Node{}
+		return nil
 	}
 
-	return *it.current
+	return it.current
 }
 
 func (it *enumerator) MoveNext() bool {
