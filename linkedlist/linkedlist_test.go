@@ -12,7 +12,7 @@ func TestNew(t *testing.T) {
 	}{
 		{New(1, 2, 3, 4, 5), []int{5, 4, 3, 2, 1}},
 		{New(5, 4, 3, 2, 1), []int{1, 2, 3, 4, 5}},
-		{New(), make([]int, 0)},
+		{New(), []int{}},
 	}
 
 	for _, sample := range samples {
@@ -118,6 +118,7 @@ func TestRemove(t *testing.T) {
 		{New(1, 2, 3), 1, []int{3, 2}, true},
 		{New(1, 2, 3), 2, []int{3, 1}, true},
 		{New(1, 2, 3), 3, []int{2, 1}, true},
+		{New(1), 1, []int{}, true},
 		{New(1, 2, 3), 0, nil, false},
 		{New(1), 0, nil, false},
 		{LinkedList{}, 0, nil, false},
@@ -157,11 +158,11 @@ func TestFind(t *testing.T) {
 		exists bool
 	}{
 		{New(1, 2, 3, 4, 5), nil, 1, true},
+		{New(1, 2, 3, 4, 5), nil, 3, true},
+		{New(1, 2, 3, 4, 5), 3, 2, true},
 		{New(1, 2, 3, 4, 5), 2, 2, true},
-		{New(1, 2, 3, 4, 5), 3, 3, true},
-		{New(1, 2, 3, 4, 5), 4, 4, true},
-		{New(1, 2, 3, 4, 5), 5, 5, true},
-		{New(1, 2, 3, 4, 5), 5, 0, false},
+		{New(1, 2, 3, 4, 5), 1, 2, false},
+		{New(1, 2, 3, 4, 5), nil, 0, false},
 		{New(1, 2, 3, 4, 5), 2, 3, false},
 		{New(1, 2, 3, 4, 5), 1, 2, false},
 	}
