@@ -13,6 +13,7 @@ type LinkedList struct {
 }
 
 // New creates new doubly linked list based on collection of values provided.
+// Example: (1,2,3) => 3->2->1
 func New(values ...interface{}) LinkedList {
 	list := LinkedList{}
 	if values != nil {
@@ -47,7 +48,17 @@ func (list *LinkedList) Last() *Node {
 // AddFirst inserts a new node at the begining of the list.
 func (list *LinkedList) AddFirst(value interface{}) *Node {
 	node := NewNode(value, list.first, nil)
-	list.first = &node
+
+	if list.first != nil {
+		first := list.first
+		first.previous = &node
+		list.first = first.previous
+	} else {
+		// Empty list
+		list.first = &node
+		list.last = list.first
+	}
+
 	list.counter++
 	return list.first
 }
@@ -55,43 +66,73 @@ func (list *LinkedList) AddFirst(value interface{}) *Node {
 // AddLast inserts a new node at the end of the list.
 func (list *LinkedList) AddLast(value interface{}) *Node {
 	node := NewNode(value, nil, list.last)
-	list.last = &node
+
+	if list.last != nil {
+		last := list.last
+		last.next = &node
+		list.last = last.next
+	} else {
+		// Empty list
+		list.last = &node
+		list.first = list.last
+	}
+
 	list.counter++
 	return list.last
 }
 
 // AddAfter inserts a new node after the provided one.
+// If node is nil, inserts new node at the begining of the list.
 func (list *LinkedList) AddAfter(node *Node, value interface{}) *Node {
 	if node == nil {
-		return nil
+		return list.AddFirst(value)
 	}
 
 	newNode := NewNode(value, node.next, node)
+
+	if list.last == newNode.previous {
+		list.last = &newNode
+	}
+
 	list.counter++
 	return &newNode
 }
 
 // AddBefore inserts a new node before the provided one.
+// If node is nil, inserts new node at the end of the list.
 func (list *LinkedList) AddBefore(node *Node, value interface{}) *Node {
 	if node == nil {
-		return nil
+		return list.AddLast(value)
 	}
 
 	newNode := NewNode(value, node, node.previous)
+
+	if list.first == newNode.next {
+		list.first = &newNode
+	}
+
 	list.counter++
 	return &newNode
 }
 
 // Remove deletes node from list.
 func (list *LinkedList) Remove(node *Node) bool {
+	if node == nil {
+		return false
+	}
+
 	if node.next != nil {
-		next := *node.next
+		next := node.next
 		next.previous = node.previous
+	} else {
+		list.last = node.previous // Last node deleted
 	}
 
 	if node.previous != nil {
-		previous := *node.previous
+		previous := node.previous
 		previous.next = node.next
+	} else {
+		list.first = node.next // First node deleted
 	}
 
 	if node.next != nil || node.previous != nil {
@@ -102,39 +143,45 @@ func (list *LinkedList) Remove(node *Node) bool {
 	return false
 }
 
-// FindAfter returns first node with provided value staring after the given node. Returns nil if value not found.
-// If node is not provided will start search from the beginning of the list.
-func (list *LinkedList) FindAfter(node *Node, value interface{}) *Node {
-	current := node
-	if node == nil {
-		current = list.first
+// Find returns first node with provided value between from and to nodes. Returns nil if value not found.
+// If from node is not provided will start search from the start of the list.
+// If to node is not provided will finish search by the end of the list.
+func (list *LinkedList) Find(from *Node, to *Node, value interface{}) *Node {
+	if list.first == nil {
+		return nil // Empty list
 	}
 
-	for current != nil {
-		if current.value == value {
-			return current
+	left := from
+	if left == nil {
+		left = list.first
+	}
+
+	right := to
+	if right == nil {
+		right = list.last
+	}
+
+	for left.previous != right &&
+		right.next != left {
+
+		if left.value == value {
+			return left
 		}
 
-		current = current.next
-	}
-
-	return nil
-}
-
-// FindBefore returns first node with provided value staring before the given node. Returns nil if value not found.
-// If node is not provided will start search from the end of the list.
-func (list *LinkedList) FindBefore(node *Node, value interface{}) *Node {
-	current := node
-	if node == nil {
-		current = list.last
-	}
-
-	for current != nil {
-		if current.value == value {
-			return current
+		if right.value == value {
+			return right
 		}
 
-		current = current.previous
+		left = left.next
+		right = right.previous
+
+		if left == right {
+			if left != nil && left.value == value {
+				return left
+			}
+
+			break
+		}
 	}
 
 	return nil
