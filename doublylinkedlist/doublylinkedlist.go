@@ -191,7 +191,7 @@ func (list *LinkedList) Find(from *Node, to *Node, value interface{}) *Node {
 	return nil
 }
 
-// Clear removes all nodes from the list
+// Clear removes all nodes from the list.
 func (list *LinkedList) Clear() {
 	list.first = nil
 	list.last = nil
