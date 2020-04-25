@@ -5,6 +5,10 @@ import (
 	"../shared"
 )
 
+// Implemented interfaces
+var _ shared.Counter = (*LinkedList)(nil)
+var _ shared.Enumerable = (*LinkedList)(nil)
+
 // LinkedList implements doubly linked list data structure.
 type LinkedList struct {
 	first   *Node
