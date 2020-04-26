@@ -17,13 +17,8 @@ type Stack struct {
 
 // New creates new stack based on collection of values provided.
 func New(values ...interface{}) Stack {
-	stack := Stack{&linkedlist.LinkedList{}}
-	if values != nil {
-		for _, value := range values {
-			stack.list.Add(nil, value)
-		}
-	}
-
+	list := linkedlist.New(values)
+	stack := Stack{&list}
 	return stack
 }
 

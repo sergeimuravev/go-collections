@@ -15,6 +15,13 @@ type Deque struct {
 	list *doublylinkedlist.LinkedList
 }
 
+// New creates new deque based on collection of values provided.
+func New(values ...interface{}) Deque {
+	list := doublylinkedlist.New(values)
+	deque := Deque{&list}
+	return deque
+}
+
 // Count returns the number of elements in collection.
 func (deque *Deque) Count() int {
 	return deque.list.Count()
