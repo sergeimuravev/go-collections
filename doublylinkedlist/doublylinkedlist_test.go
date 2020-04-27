@@ -13,6 +13,8 @@ func TestNew(t *testing.T) {
 		{New(1, 2, 3, 4, 5), []int{5, 4, 3, 2, 1}},
 		{New(5, 4, 3, 2, 1), []int{1, 2, 3, 4, 5}},
 		{New(), make([]int, 0)},
+		{New(make([]interface{}, 0)), []int{}},
+		{New(append(make([]interface{}, 0), 1, 2, 3, 4, 5)), []int{5, 4, 3, 2, 1}},
 	}
 
 	for _, sample := range samples {

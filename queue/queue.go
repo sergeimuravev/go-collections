@@ -22,7 +22,13 @@ func New(values ...interface{}) Queue {
 	if values != nil {
 		var prev *linkedlist.Node
 		for _, value := range values {
-			prev = queue.list.Add(prev, value)
+			if slice, ok := value.([]interface{}); len(values) == 1 && ok {
+				for _, elem := range slice {
+					prev = queue.list.Add(prev, elem) // If slice of values provided
+				}
+			} else {
+				prev = queue.list.Add(prev, value)
+			}
 		}
 	}
 

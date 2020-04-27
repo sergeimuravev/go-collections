@@ -17,12 +17,17 @@ type LinkedList struct {
 }
 
 // New creates new doubly linked list based on collection of values provided.
-// Example: (1,2,3) => 3->2->1
 func New(values ...interface{}) LinkedList {
 	list := LinkedList{}
 	if values != nil {
 		for _, value := range values {
-			list.AddFirst(value)
+			if slice, ok := value.([]interface{}); len(values) == 1 && ok {
+				for _, elem := range slice {
+					list.AddFirst(elem) // If slice of values provided
+				}
+			} else {
+				list.AddFirst(value)
+			}
 		}
 	}
 
