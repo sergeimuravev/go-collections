@@ -12,13 +12,13 @@ var _ shared.Enumerable = (*Deque)(nil)
 
 // Deque is a double-ended queue data structure implementation.
 type Deque struct {
-	list *doublylinkedlist.LinkedList
+	list doublylinkedlist.LinkedList
 }
 
 // New creates new deque based on collection of values provided.
 func New(values ...interface{}) Deque {
 	list := doublylinkedlist.New(values)
-	deque := Deque{&list}
+	deque := Deque{list}
 	return deque
 }
 

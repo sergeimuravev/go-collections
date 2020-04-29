@@ -12,13 +12,13 @@ var _ shared.Enumerable = (*Queue)(nil)
 
 // Queue is FIFO data structure implementation.
 type Queue struct {
-	list *linkedlist.LinkedList
+	list linkedlist.LinkedList
 	tail *linkedlist.Node
 }
 
 // New creates new queue based on collection of values provided.
 func New(values ...interface{}) Queue {
-	queue := Queue{&linkedlist.LinkedList{}, nil}
+	queue := Queue{linkedlist.LinkedList{}, nil}
 	if values != nil {
 		var prev *linkedlist.Node
 		for _, value := range values {

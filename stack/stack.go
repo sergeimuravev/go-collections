@@ -12,13 +12,13 @@ var _ shared.Enumerable = (*Stack)(nil)
 
 // Stack is LIFO data structure implementation.
 type Stack struct {
-	list *linkedlist.LinkedList
+	list linkedlist.LinkedList
 }
 
 // New creates new stack based on collection of values provided.
 func New(values ...interface{}) Stack {
 	list := linkedlist.New(values)
-	stack := Stack{&list}
+	stack := Stack{list}
 	return stack
 }
 
