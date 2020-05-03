@@ -61,12 +61,8 @@ func (list *List) Insert(index int, value interface{}) {
 func (list *List) InsertAll(index int, values []interface{}) {
 	tail := make([]interface{}, len(list.buffer)-index)
 	copy(tail, list.buffer[:index+1])
-
-	for i := 0; i < len(values); i++ {
-		list.buffer[i+index] = values[i]
-	}
-
-	list.buffer = append(list.buffer[:index+1+len(values)], tail)
+	list.buffer = append(list.buffer[:index], values)
+	list.buffer = append(list.buffer, tail)
 }
 
 // IndexOf returns non-negative index of the first element with provided value or -1 if value not found.
