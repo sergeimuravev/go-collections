@@ -30,6 +30,8 @@ func New(values ...interface{}) Queue {
 				prev = queue.list.Add(prev, value)
 			}
 		}
+
+		queue.tail = prev
 	}
 
 	return queue
