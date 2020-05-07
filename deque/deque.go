@@ -2,8 +2,8 @@
 package deque
 
 import (
-	"../doublylinkedlist"
-	"../shared"
+	"github.com/sergeimuravev/go-collections/doublylinkedlist"
+	"github.com/sergeimuravev/go-collections/shared"
 )
 
 // Implemented interfaces

@@ -1,7 +1,7 @@
 package list
 
 import (
-	"../shared"
+	"github.com/sergeimuravev/go-collections/shared"
 )
 
 // Implemented interfaces

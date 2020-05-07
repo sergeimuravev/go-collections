@@ -2,7 +2,7 @@
 package linkedlist
 
 import (
-	"../shared"
+	"github.com/sergeimuravev/go-collections/shared"
 )
 
 // Implemented interfaces

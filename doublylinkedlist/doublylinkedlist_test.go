@@ -1,7 +1,7 @@
 package doublylinkedlist_test
 
 import (
-	. "../doublylinkedlist"
+	. "github.com/sergeimuravev/go-collections/doublylinkedlist"
 	"testing"
 )
 

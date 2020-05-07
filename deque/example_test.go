@@ -1,9 +1,9 @@
 package deque_test
 
 import (
-	"../deque"
-	"../doublylinkedlist"
 	"fmt"
+	"github.com/sergeimuravev/go-collections/deque"
+	"github.com/sergeimuravev/go-collections/doublylinkedlist"
 )
 
 func Example() {

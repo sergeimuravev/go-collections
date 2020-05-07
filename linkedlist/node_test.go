@@ -1,7 +1,7 @@
 package linkedlist_test
 
 import (
-	. "../linkedlist"
+	. "github.com/sergeimuravev/go-collections/linkedlist"
 	"testing"
 )
 

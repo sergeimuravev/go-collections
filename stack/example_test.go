@@ -1,8 +1,8 @@
 package stack_test
 
 import (
-	"../linkedlist"
-	"../stack"
+	"github.com/sergeimuravev/go-collections/linkedlist"
+	"github.com/sergeimuravev/go-collections/stack"
 	"fmt"
 )
 

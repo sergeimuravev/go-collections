@@ -1,8 +1,8 @@
 package queue_test
 
 import (
-	"../linkedlist"
-	"../queue"
+	"github.com/sergeimuravev/go-collections/linkedlist"
+	"github.com/sergeimuravev/go-collections/queue"
 	"fmt"
 )
 
