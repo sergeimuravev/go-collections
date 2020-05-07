@@ -34,7 +34,7 @@ func (deque *Deque) GetEnumerator() shared.Enumerator {
 
 // Front returns the first element in the deque.
 func (deque *Deque) Front() interface{} {
-	node := deque.list.First()
+	node := deque.list.Last()
 	if node == nil {
 		return nil
 	}
@@ -44,7 +44,7 @@ func (deque *Deque) Front() interface{} {
 
 // Back returns the last element in the deque.
 func (deque *Deque) Back() interface{} {
-	node := deque.list.Last()
+	node := deque.list.First()
 	if node == nil {
 		return nil
 	}
@@ -54,17 +54,17 @@ func (deque *Deque) Back() interface{} {
 
 // PushFront adds an element to the beginning of the deque.
 func (deque *Deque) PushFront(value interface{}) {
-	deque.list.AddFirst(value)
+	deque.list.AddLast(value)
 }
 
 // PushBack adds an element to the end of the deque.
 func (deque *Deque) PushBack(value interface{}) {
-	deque.list.AddLast(value)
+	deque.list.AddFirst(value)
 }
 
 // PopFront removes and returns the first element of the deque.
 func (deque *Deque) PopFront() interface{} {
-	node := deque.list.First()
+	node := deque.list.Last()
 	if deque.list.Remove(node) {
 		return node.Value()
 	}
@@ -74,7 +74,7 @@ func (deque *Deque) PopFront() interface{} {
 
 // PopBack removes and returns the last element of the deque.
 func (deque *Deque) PopBack() interface{} {
-	node := deque.list.Last()
+	node := deque.list.First()
 	if deque.list.Remove(node) {
 		return node.Value()
 	}
