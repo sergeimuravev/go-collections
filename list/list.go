@@ -40,6 +40,11 @@ func (list *List) ElementAt(index int) interface{} {
 	return list.buffer[index]
 }
 
+// SetElementAt assigns new value to the list element by its index.
+func (list *List) SetElementAt(index int, value interface{}) {
+	list.buffer[index] = value
+}
+
 // Add inserts new element at the end of the list.
 func (list *List) Add(value interface{}) {
 	list.buffer = append(list.buffer, value)
@@ -50,8 +55,8 @@ func (list *List) AddAll(values []interface{}) {
 	list.buffer = append(list.buffer, values)
 }
 
-// Insert inserts new element at the specified index of the list.
-func (list *List) Insert(index int, value interface{}) {
+// InsertAt inserts new element at the specified index of the list.
+func (list *List) InsertAt(index int, value interface{}) {
 	values := make([]interface{}, 1)
 	values[0] = value
 	list.InsertAll(index, values)
