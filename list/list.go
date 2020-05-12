@@ -16,8 +16,26 @@ type List struct {
 }
 
 // New creates list instance from slice. Size and capacity are re-used.
-func New(data []interface{}) List {
-	return List{buffer: data}
+func New(values ...interface{}) List {
+	if values == nil {
+		return List{buffer: make([]interface{}, 0)}
+	}
+
+	if len(values) != 1 {
+		return List{buffer: values}
+	}
+
+	// when len(values) == 1
+	list := List{buffer: make([]interface{}, 0)}
+	for _, value := range values {
+		if slice, ok := value.([]interface{}); ok {
+			for _, elem := range slice {
+				list.Add(elem)
+			}
+		}
+	}
+
+	return list
 }
 
 // Count returns the number of elements in collection.

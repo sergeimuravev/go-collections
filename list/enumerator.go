@@ -21,10 +21,8 @@ func (it *enumerator) Current() interface{} {
 }
 
 func (it *enumerator) MoveNext() bool {
-	if it.index < 0 {
-		if it.list.Count() == 0 {
-			return false // Empty list
-		}
+	if it.list.Count() == 0 {
+		return false // Empty list
 	}
 
 	it.index++
