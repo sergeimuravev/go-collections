@@ -124,12 +124,11 @@ func (list *List) FindAll(predicate func(interface{}) bool) []interface{} {
 
 // RemoveAt removes element by its index.
 func (list *List) RemoveAt(index int) {
-	length := len(list.buffer)
 	copy(list.buffer[index:], list.buffer[index+1:])
-	list.buffer[length-1] = nil
-	list.buffer = list.buffer[:length-1]
+	list.buffer[len(list.buffer)-1] = nil
+	list.buffer = list.buffer[:len(list.buffer)-1]
 
-	if cap(list.buffer) > 2*length {
+	if cap(list.buffer) >= 2*len(list.buffer) {
 		list.TrimExcess() // Shrink buffer
 	}
 }
@@ -146,9 +145,9 @@ func (list *List) RemoveAll(value interface{}) {
 	}
 }
 
-// TrimExcess sets the capacity to the actual number of elements in the list plus one.
+// TrimExcess sets the capacity to the actual number of elements.
 func (list *List) TrimExcess() {
-	buffer := make([]interface{}, len(list.buffer)+1)
+	buffer := make([]interface{}, len(list.buffer))
 	copy(buffer, list.buffer)
 	list.buffer = buffer
 }
