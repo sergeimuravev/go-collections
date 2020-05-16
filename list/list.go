@@ -70,7 +70,7 @@ func (list *List) Add(value interface{}) {
 
 // AddAll inserts all slice values at the end of the list.
 func (list *List) AddAll(values []interface{}) {
-	list.buffer = append(list.buffer, values)
+	list.buffer = append(list.buffer, values...)
 }
 
 // InsertAt inserts new element at the specified index of the list.
@@ -83,9 +83,9 @@ func (list *List) InsertAt(index int, value interface{}) {
 // InsertAll inserts all slice values at the specified index of the list.
 func (list *List) InsertAll(index int, values []interface{}) {
 	tail := make([]interface{}, len(list.buffer)-index)
-	copy(tail, list.buffer[:index+1])
-	list.buffer = append(list.buffer[:index], values)
-	list.buffer = append(list.buffer, tail)
+	copy(tail, list.buffer[index:])
+	list.buffer = append(list.buffer[:index], values...)
+	list.buffer = append(list.buffer, tail...)
 }
 
 // IndexOf returns non-negative index of the first element with provided value or -1 if value not found.
@@ -136,7 +136,12 @@ func (list *List) RemoveAt(index int) {
 
 // RemoveAll removes all elements in the list with the value provided.
 func (list *List) RemoveAll(value interface{}) {
-	for i := list.IndexOf(value); i >= 0; {
+	for {
+		i := list.IndexOf(value)
+		if i < 0 {
+			break
+		}
+
 		list.RemoveAt(i)
 	}
 }
