@@ -1,8 +1,7 @@
 package list_test
 
 import (
-	//. "github.com/sergeimuravev/go-collections/list"
-	. "../list"
+	. "github.com/sergeimuravev/go-collections/list"
 	"testing"
 )
 
