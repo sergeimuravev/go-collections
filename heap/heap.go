@@ -22,12 +22,6 @@ type Heap struct {
 // New creates heap instance from slice.
 func New(data []interface{}, cmp comparer) Heap {
 	list := list.New(make([]interface{}, 0, cap(data)))
-	if cmp == nil {
-		cmp = func(x interface{}, y interface{}) bool {
-			return x == y
-		}
-	}
-
 	heap := Heap{list, cmp}
 	for _, v := range data {
 		heap.Push(v)
