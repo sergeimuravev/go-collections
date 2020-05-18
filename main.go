@@ -1,14 +1,14 @@
 package main
 
 import (
-	_ "./deque"
-	_ "./doublylinkedlist"
-	_ "./heap"
-	_ "./linkedlist"
-	_ "./list"
-	_ "./queue"
-	_ "./shared"
-	_ "./stack"
+	_ "github.com/sergeimuravev/go-collections/deque"
+	_ "github.com/sergeimuravev/go-collections/doublylinkedlist"
+	_ "github.com/sergeimuravev/go-collections/heap"
+	_ "github.com/sergeimuravev/go-collections/linkedlist"
+	_ "github.com/sergeimuravev/go-collections/list"
+	_ "github.com/sergeimuravev/go-collections/queue"
+	_ "github.com/sergeimuravev/go-collections/shared"
+	_ "github.com/sergeimuravev/go-collections/stack"
 )
 
 func main() {
