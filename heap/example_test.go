@@ -8,8 +8,8 @@ import (
 func Example() {
 	// Create heap with some values
 	collection := append(make([]interface{}, 0), 2, 1, 5, 3, 4)
-	comparer := func(x interface{}, y interface{}) bool {
-		return x.(int) < y.(int)
+	comparer := func(x interface{}, y interface{}) int {
+		return x.(int) - y.(int)
 	}
 
 	heap := heap.New(collection, comparer)
