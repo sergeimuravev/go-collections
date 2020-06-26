@@ -21,21 +21,7 @@ func New(values ...interface{}) List {
 		return List{buffer: make([]interface{}, 0)}
 	}
 
-	if len(values) != 1 {
-		return List{buffer: values}
-	}
-
-	// when len(values) == 1
-	list := List{buffer: make([]interface{}, 0)}
-	for _, value := range values {
-		if slice, ok := value.([]interface{}); ok {
-			for _, elem := range slice {
-				list.Add(elem)
-			}
-		}
-	}
-
-	return list
+	return List{buffer: values}
 }
 
 // Count returns the number of elements in collection.
