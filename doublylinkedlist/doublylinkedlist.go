@@ -21,13 +21,7 @@ func New(values ...interface{}) LinkedList {
 	list := LinkedList{}
 	if values != nil {
 		for _, value := range values {
-			if slice, ok := value.([]interface{}); len(values) == 1 && ok {
-				for _, elem := range slice {
-					list.AddFirst(elem) // If slice of values provided
-				}
-			} else {
-				list.AddFirst(value)
-			}
+			list.AddFirst(value)
 		}
 	}
 

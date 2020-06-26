@@ -20,13 +20,7 @@ func New(values ...interface{}) LinkedList {
 	list := LinkedList{}
 	if values != nil {
 		for _, value := range values {
-			if slice, ok := value.([]interface{}); len(values) == 1 && ok {
-				for _, elem := range slice {
-					list.Add(nil, elem) // If slice of values provided
-				}
-			} else {
-				list.Add(nil, value)
-			}
+			list.Add(nil, value)
 		}
 	}
 

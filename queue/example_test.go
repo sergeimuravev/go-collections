@@ -1,9 +1,10 @@
 package queue_test
 
 import (
+	"fmt"
+
 	"github.com/sergeimuravev/go-collections/linkedlist"
 	"github.com/sergeimuravev/go-collections/queue"
-	"fmt"
 )
 
 func Example() {
