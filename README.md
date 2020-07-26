@@ -1,5 +1,4 @@
-# About
-The repository `go-collections` is a set of collections for Golang developers including:
+This repository is a set of common collection types that maybe useful for software engineers working with Go:
 
 * Singly linked list - [github.com/sergeimuravev/go-collections/linkedlist](./linkedlist)
 * Doubly linked list - [github.com/sergeimuravev/go-collections/doublylinkedlist](./doublylinkedlist)
@@ -8,3 +7,4 @@ The repository `go-collections` is a set of collections for Golang developers in
 * Deque - [github.com/sergeimuravev/go-collections/deque](./deque)
 * Dynamic list - [github.com/sergeimuravev/go-collections/list](./list)
 * Binary heap - [github.com/sergeimuravev/go-collections/heap](./heap)
+* AVL tree - [github.com/sergeimuravev/go-collections/avltree](./avltree)
