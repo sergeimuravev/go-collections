@@ -1,6 +1,8 @@
+// +build all
 package main
 
 import (
+	_ "github.com/sergeimuravev/go-collections/avltree"
 	_ "github.com/sergeimuravev/go-collections/deque"
 	_ "github.com/sergeimuravev/go-collections/doublylinkedlist"
 	_ "github.com/sergeimuravev/go-collections/heap"
